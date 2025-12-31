@@ -15,6 +15,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+        System.out.println(authException.getAuthenticationRequest());
         if(response.getStatus() == HttpServletResponse.SC_NOT_FOUND) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         } else {

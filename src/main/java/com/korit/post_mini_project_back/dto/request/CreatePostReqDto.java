@@ -20,6 +20,7 @@ public class CreatePostReqDto {
         return Post.builder()
                 .content(content)
                 .visibility(Visibility)
+                .userId(userId)
                 .build();
     }
 }

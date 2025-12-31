@@ -42,11 +42,14 @@ public class FileService {
             System.out.println(filePath);
             try {
                 file.transferTo(filePath);
-            } catch (IOException e) {}
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException("파일 저장 실패");
+            }
             imageFiles.add(ImageFile.builder()
                             .category(category)
                             .originalFilename(originalFilename)
-                            .filePath(filePath.toString())
+                            .filePath(filePath.toString().substring(filePath.toString().indexOf("upload") + "upload".length()).replaceAll("\\\\", "/"))
                             .extension(extension)
                             .size(file.getSize())
                     .build());

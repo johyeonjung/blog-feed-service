@@ -6,22 +6,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+public class Comment {
+    private int commentId;
     private int postId;
-    private String content;
-    private String visibility;
+    private int parentCommentId;
+    private int parentUserId;
     private int userId;
+    private String content;
     private LocalDateTime createdAt;
-
-    // 책상을 조금만 치워볼까??
-
-    private User user;
-    private List<ImageFile> imageFiles;
-    private Follow follow;
 }

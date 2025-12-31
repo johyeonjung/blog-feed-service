@@ -57,6 +57,7 @@ public class SecurityConfig {
             auth.requestMatchers("/doc").permitAll();
             auth.requestMatchers("/oauth2/**").permitAll();
             auth.requestMatchers("/login/**").permitAll();
+            auth.requestMatchers("/image/**").permitAll();
             auth.anyRequest().authenticated();
         });
         http.exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint));
