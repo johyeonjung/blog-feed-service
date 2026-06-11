@@ -8,11 +8,11 @@
         <version>3.5.8</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.korit</groupId>
-    <artifactId>post_mini_project_back</artifactId>
+    <groupId>com.johyeonjung.blogfeed</groupId>
+    <artifactId>blog-feed-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>post_mini_project_back</name>
-    <description>post_mini_project_back</description>
+    <name>blog-feed-service</name>
+    <description>blog-feed-service</description>
     <url/>
     <licenses>
         <license/>
