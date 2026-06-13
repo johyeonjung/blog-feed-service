@@ -21,6 +21,11 @@ public class PostsController {
         postService.createPost(dto);
         return ResponseEntity.ok(null);
     }
+    @GetMapping("/test")
+    public String test() {
+        System.out.println("테스트 호출");
+        return "ok";
+    }
 
     @GetMapping("/feeds")
     public ResponseEntity<?> getFeedList(GetFeedListReqDto dto) {

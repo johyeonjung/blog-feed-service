@@ -14,12 +14,11 @@ import java.io.IOException;
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        System.out.println(authException.getAuthenticationRequest());
-        if(response.getStatus() == HttpServletResponse.SC_NOT_FOUND) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
-        } else {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "인증 실패");
-        }
+    public void commence(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            AuthenticationException authException
+    ) throws IOException {
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "인증 실패");
     }
 }

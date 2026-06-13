@@ -51,6 +51,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers("/api/auth/**").permitAll();
+            auth.requestMatchers("/api/posts/test").permitAll();
             auth.requestMatchers("/v3/api-docs/**").permitAll();
             auth.requestMatchers("/swagger-ui/**").permitAll();
             auth.requestMatchers("/swagger-ui.html").permitAll();
@@ -58,7 +59,7 @@ public class SecurityConfig {
             auth.requestMatchers("/oauth2/**").permitAll();
             auth.requestMatchers("/login/**").permitAll();
             auth.requestMatchers("/image/**").permitAll();
-            auth.anyRequest().authenticated();
+            auth.anyRequest().permitAll(); //편의상 햇으니 이후에 변경해야함
         });
         http.exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint));
 
