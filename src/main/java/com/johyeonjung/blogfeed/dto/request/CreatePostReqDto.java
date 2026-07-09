@@ -14,8 +14,7 @@ public class CreatePostReqDto {
     private String tagContent;
     private List<MultipartFile> files;
 
-    public Post toEntity() {
-        Long  userId = PrincipalUser.getAuthenticatedPrincipalUser().getUser().getUserId();
+    public Post toEntity(Long userId) {
         return Post.builder()
                 .visibility(visibility)
                 .content(content)

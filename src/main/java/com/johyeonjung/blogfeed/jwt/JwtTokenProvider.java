@@ -49,13 +49,15 @@ public class JwtTokenProvider {
         }
     }
 
-    public int getUserId(String token) {
-        return (int) Jwts.parser()
+    public Long getUserId(String token) {
+        Object userId = Jwts.parser()
                 .setSigningKey(key)
                 .build()
                 .parseClaimsJws(token)
                 .getPayload()
                 .get("userId");
+
+        return ((Number) userId).longValue();
     }
 }
 

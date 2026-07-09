@@ -42,7 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        int userId = jwtTokenProvider.getUserId(accessToken);
+        Long userId = jwtTokenProvider.getUserId(accessToken);
         User foundUser = userMapper.findByUserId(userId);
 
         if (foundUser == null) {
@@ -50,7 +50,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
         Collection<? extends GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(foundUser.getRole()));
-        PrincipalUser principalUser = new PrincipalUser(authorities, Map.of("id", foundUser.getOauth2Id()), "id" ,foundUser);
+        PrincipalUser principalUser = new PrincipalUser(foundUser, authorities);
         String password = "";
 
 

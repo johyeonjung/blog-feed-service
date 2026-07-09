@@ -31,7 +31,7 @@ public class UserService {
             throw new RuntimeException(("이미 사용중인 아이디입니다"));
         }
 
-        if (dto.getPassword().equals( dto.getConfirmPassword())) {
+        if (!dto.getPassword().equals( dto.getConfirmPassword())) {
             throw new RuntimeException("비밀번호가 일치하지 않습니다");
         }
 

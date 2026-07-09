@@ -32,7 +32,8 @@ public class PostService {
     //여기서부터 고치기
     @Transactional(rollbackFor = Exception.class)
     public void createPost(CreatePostReqDto dto) {
-        Post post = dto.toEntity();
+        Long userId = PrincipalUser.getAuthenticatedPrincipalUser().getUser().getUserId();
+        Post post = dto.toEntity(userId);
         postMapper.insert(post);
         List<MultipartFile> imagefiles = dto.getFiles();
 

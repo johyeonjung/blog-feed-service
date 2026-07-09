@@ -24,8 +24,6 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    private final OAuth2UserService oAuth2UserService;
-    private final OAuth2SuccessHandler oAuth2SuccessHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -40,10 +38,7 @@ public class SecurityConfig {
         // csrf 비활성화
         http.csrf(csrf -> csrf.disable());
 
-        http.oauth2Login(oauth2 ->
-                oauth2.userInfoEndpoint(userInfo -> userInfo.userService(oAuth2UserService))
-                        .successHandler(oAuth2SuccessHandler)
-        );
+
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -54,11 +49,8 @@ public class SecurityConfig {
             auth.requestMatchers("/swagger-ui/**").permitAll();
             auth.requestMatchers("/swagger-ui.html").permitAll();
             auth.requestMatchers("/doc").permitAll();
-            auth.requestMatchers("/oauth2/**").permitAll();
-            auth.requestMatchers("/login/**").permitAll();
             auth.requestMatchers("/image/**").permitAll();
-
-            auth.anyRequest().permitAll(); //편의상 햇으니 이후에 변경해야함
+            auth.anyRequest().authenticated();
         });
         http.exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint));
 

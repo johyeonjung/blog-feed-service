@@ -65,6 +65,11 @@
         where follower_id = #{loginUserId}
         and following_id = #{profileUserId}
     </select>
+    <select id="findByUserId" resultType="com.johyeonjung.blogfeed.entity.User">
+        select *
+        from user_tb
+        where user_id = #{userId}
+    </select>
 
 
 

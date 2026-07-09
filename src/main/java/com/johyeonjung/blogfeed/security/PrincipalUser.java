@@ -5,23 +5,41 @@ import lombok.Getter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
+import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Map;
 
 @Getter
-public class PrincipalUser extends DefaultOAuth2User {
+public class PrincipalUser implements UserDetails {
         private User user;
+        private final Collection<? extends GrantedAuthority> authorities;
 
-    public PrincipalUser(Collection<? extends GrantedAuthority> authorities, Map<String, Object> attributes, String nameAttributeKey, User user) {
-        super(authorities, attributes, nameAttributeKey);
+    public PrincipalUser(User user, Collection<? extends GrantedAuthority> authorities) {
         this.user = user;
+        this.authorities = authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return user.getPassword();
+    }
+
+    //닉네임? 이메일?
+    @Override
+    public String getUsername() {
+        return user.getEmail();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
     public static PrincipalUser getAuthenticatedPrincipalUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PrincipalUser principalUser = (PrincipalUser) authentication.getPrincipal();
-        return principalUser;
+        return (PrincipalUser) authentication.getPrincipal();
     }
+
+
 }
 
