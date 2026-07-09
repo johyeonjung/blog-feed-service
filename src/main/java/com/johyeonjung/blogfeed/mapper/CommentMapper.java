@@ -10,5 +10,5 @@ import java.util.List;
 @Mapper
 public interface CommentMapper {
     int insert(Comment comment);
-    List<CustomComment> findAllCommentByPostId(@Param("postId") int postId);
+    List<CustomComment> findAllCommentByPostId(@Param("postId") Long postId);
 }

@@ -6,93 +6,71 @@
 <mapper namespace="com.johyeonjung.blogfeed.mapper.UserMapper">
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="userId">
-        insert into user_tb
-        values (default, #{oauth2Id}, #{nickname}, #{name}, #{email}, #{provider}, #{role}, #{imgUrl}, #{imgFilePath}, now())
+        insert into user_tb(
+        oauth2_id,
+        email,
+        password,
+        provider,
+        role,
+        nickname,
+        instagram_id,
+        name,
+        profile_image_url,
+        gender,
+        birth_date,
+        status_message
+        )
+        values ( #{oauth2Id}, #{email}, #{password}, #{provider}, #{role}, #{nickname}, #{instagramId}, #{name},
+        #{profileImageUrl},#{gender},#{birthDate},#{statusMessage})
     </insert>
 
-    <select id="findByInstagramId" resultType="User">
+    <select id="findByEmail" resultType="com.johyeonjung.blogfeed.entity.User">
+        select *
+        from
+        user_tb
+        where
+        email = #{email}
+
+    </select>
+
+    <select id="findByInstagramId" resultType="com.johyeonjung.blogfeed.entity.User">
         select *
         from
             user_tb
         where
-            instagram_id = #{instragramId}
+            instagram_id = #{instagramId}
 
     </select>
 
-    <select id="findByUserId" resultType="User">
-        select
-            user_id,
-            oauth2_id,
-            nickname,
-            name,
-            email,
-            provider,
-            role,
-            img_url,
-            img_file_path,
-            created_at
-        from
-            user_tb
-        where
-            user_id = #{userId}
+    <select id="countFollowers" resultType="int">
+        select count(*)
+        from follow_tb
+        where following_id = #{userId}
     </select>
 
-    <select id="findByOauth2Id" resultType="User">
-        select
-            user_id,
-            oauth2_id,
-            nickname,
-            name,
-            email,
-            provider,
-            role,
-            img_url,
-            img_file_path,
-            created_at
-        from
-            user_tb
-        where
-            oauth2_id = #{oauth2Id}
+    <select id="countFollowings" resultType="int">
+        select count(*)
+        from follow_tb
+        where follower_id = #{userId}
     </select>
 
-    <select id="findByNickname" resultType="User">
-        select
-            user_id,
-            oauth2_id,
-            nickname,
-            name,
-            email,
-            provider,
-            role,
-            img_url,
-            img_file_path,
-            created_at
-        from
-            user_tb
-        where
-            nickname = #{nickname}
+    <select id="countPosts" resultType="int">
+        select count(*)
+        from post_tb
+        where user_id = #{userId}
     </select>
-    <select id="createNickname" resultType="java.lang.String">
-        select
-            concat(
-                (select
-                    word as adjective_word
-                from
-                    nickname_words_tb
-                where
-                    word_type = 'adjective'
-                order by
-                    rand()
-                limit 0, 1),
-                (select
-                    word as noun_word
-                from
-                    nickname_words_tb
-                where
-                    word_type = 'noun'
-                order by
-                    rand()
-                limit 0, 1)) as nickname;
+    <select id="isFollowing" resultType="int">
+        select count(*)
+        from follow_tb
+        where follower_id = #{loginUserId}
+        and following_id = #{profileUserId}
     </select>
+
+
+
+
+
+
+
 
 </mapper>

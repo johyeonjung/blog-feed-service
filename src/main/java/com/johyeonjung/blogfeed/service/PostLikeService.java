@@ -23,8 +23,8 @@ public class PostLikeService {
             return "이미 좋아요한 게시글입니다";
         }
         PostLike postLike = PostLike.builder()
-                .postId(postId.intValue())
-                .userId(userId.intValue())
+                .postId(postId)
+                .userId(userId)
                 .build();
 
         postLikeMapper.insert(postLike);

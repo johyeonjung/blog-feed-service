@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HighlightStory {
-    private int highlightStoryId;
-    private int highlightId;
-    private int storyId;
+    private Long highlightStoryId;
+    private Long highlightId;
+    private Long storyId;
 }

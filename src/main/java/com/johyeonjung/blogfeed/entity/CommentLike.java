@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentLike {
-    private int storyImageId;
-    private int storyId;
+    private Long storyImageId;
+    private Long storyId;
     private String imageUrl;
 }

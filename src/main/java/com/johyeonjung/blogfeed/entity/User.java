@@ -23,7 +23,6 @@ public class User {
     private String instagramId;
     private String name;
     private String profileImageUrl;
-    private String imgUrl;
     private String gender;
     private LocalDate birthDate;
     private String statusMessage;

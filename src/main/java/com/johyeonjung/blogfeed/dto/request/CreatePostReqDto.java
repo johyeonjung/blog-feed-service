@@ -15,7 +15,7 @@ public class CreatePostReqDto {
     private List<MultipartFile> files;
 
     public Post toEntity() {
-        int  userId = PrincipalUser.getAuthenticatedPrincipalUser().getUser().getUserId();
+        Long  userId = PrincipalUser.getAuthenticatedPrincipalUser().getUser().getUserId();
         return Post.builder()
                 .visibility(visibility)
                 .content(content)

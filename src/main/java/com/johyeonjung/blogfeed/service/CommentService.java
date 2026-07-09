@@ -17,7 +17,7 @@ import java.util.List;
 public class CommentService {
     private final CommentMapper commentMapper;
 
-    public void createComment(int postId, CreatePostCommentReqDto dto) {
+    public void createComment(Long postId, CreatePostCommentReqDto dto) {
         User user = PrincipalUser.getAuthenticatedPrincipalUser().getUser();
 
         commentMapper.insert(Comment.builder()
@@ -29,7 +29,7 @@ public class CommentService {
                 .build());
     }
 
-    public List<CustomComment> getComments(int postId) {
+    public List<CustomComment> getComments(Long postId) {
         return commentMapper.findAllCommentByPostId(postId);
     }
 }

@@ -35,7 +35,7 @@ public class UserController {
 
     @GetMapping("/{instgramId}")
     public ResponseEntity<?> getUserProfile(@PathVariable String instgramId) {
-        return userService.getProfile(instgramId);
+        return ResponseEntity.ok(userService.getProfile(instgramId));
     }
 
 

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class CreatePostCommentReqDto {
-    private int parentCommentId;
-    private int parentUserId;
+    private Long parentCommentId;
+    private Long parentUserId;
     private String content;
 }
