@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -12,14 +13,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    private int userId;
+    private Long userId;
     private String oauth2Id;
-    private String nickname;
-    private String name;
     private String email;
+    private String password;
     private String provider;
     private String role;
+    private String nickname;
+    private String instagramId;
+    private String name;
+    private String profileImageUrl;
     private String imgUrl;
-    private String imgFilePath;
-    private LocalDateTime createdAt;
+    private String gender;
+    private LocalDate birthDate;
+    private String statusMessage;
 }

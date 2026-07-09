@@ -59,6 +59,7 @@ public class SecurityConfig {
             auth.requestMatchers("/oauth2/**").permitAll();
             auth.requestMatchers("/login/**").permitAll();
             auth.requestMatchers("/image/**").permitAll();
+
             auth.anyRequest().permitAll(); //편의상 햇으니 이후에 변경해야함
         });
         http.exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint));

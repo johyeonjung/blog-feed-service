@@ -4,6 +4,7 @@ import com.johyeonjung.blogfeed.entity.User;
 import com.johyeonjung.blogfeed.mapper.UserMapper;
 import com.johyeonjung.blogfeed.security.PrincipalUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +34,9 @@ public class UserService {
             }
         }
         return newNickname;
+    }
+
+    public ResponseEntity<?> getProfile(String instgramId) {
+        return userMapper.findByInstgramId(instgramId);
     }
 }

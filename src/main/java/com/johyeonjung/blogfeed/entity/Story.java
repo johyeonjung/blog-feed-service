@@ -7,20 +7,15 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
-    private Long postId;
-    private Long userId;
+public class Story {
+    private int storyId;
+    private int userId;
     private String content;
-    private String visibility;
-    private String tagContent;
     private LocalDate createdAt;
-    private LocalDate updatedAt;
-
-
+    private LocalDate expiredAt;
 }

@@ -6,21 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
-    private Long postId;
-    private Long userId;
-    private String content;
-    private String visibility;
-    private String tagContent;
+public class highlight {
+    private int highlightId;
+    private int userId;
+    private String title;
+    private String coverImageUrl;
     private LocalDate createdAt;
-    private LocalDate updatedAt;
-
-
 }

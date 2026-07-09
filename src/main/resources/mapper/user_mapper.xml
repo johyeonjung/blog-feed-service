@@ -10,6 +10,15 @@
         values (default, #{oauth2Id}, #{nickname}, #{name}, #{email}, #{provider}, #{role}, #{imgUrl}, #{imgFilePath}, now())
     </insert>
 
+    <select id="findByInstagramId" resultType="User">
+        select *
+        from
+            user_tb
+        where
+            instagram_id = #{instragramId}
+
+    </select>
+
     <select id="findByUserId" resultType="User">
         select
             user_id,

@@ -9,15 +9,17 @@ import java.util.List;
 
 @Data
 public class CreatePostReqDto {
-    private String Visibility;
+    private String visibility;
     private String content;
+    private String tagContent;
     private List<MultipartFile> files;
 
     public Post toEntity() {
         int  userId = PrincipalUser.getAuthenticatedPrincipalUser().getUser().getUserId();
         return Post.builder()
+                .visibility(visibility)
                 .content(content)
-                .visibility(Visibility)
+                .tagContent(tagContent)
                 .userId(userId)
                 .build();
     }
